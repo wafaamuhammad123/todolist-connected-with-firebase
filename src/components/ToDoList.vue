@@ -65,17 +65,36 @@ export default {
 .completed {
 	text-decoration: line-through;
 }
+.clear{
+	width: 20%;
+  font-size: 17px;
+  padding: 1.5%;
+  background: red;
+  border: none;
+  color: white;
+}
+.clear:hover{
+ background: rgb(231, 4, 4);
+}
 .delete {
 			padding: 2%;
-				margin-left: 2%;
-				font-size: 17px;
+  margin-left: 2%;
+  font-size: 17px;
+  background-color: red;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  width: 23%;
+}
+.delete:hover{
+ background: rgb(231, 4, 4);
 }
 .task2 {
-		width: 50%;
-			padding: 2%;
-			/* border: 1px solid #ffeded; */
-			background-color: #ffce93;
-			margin-left: 20%;
-			color: white;
+	width: 50%;
+  padding: 2%;
+  border: 1px solid #ffeded;
+  /* background-color: #ffce93; */
+  margin-left: 20%;
+  color: black;
 }
 </style>

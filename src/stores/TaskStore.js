@@ -66,10 +66,6 @@ function fetchTasks() {
 
 	function clearTasks() {
 		tasks.value = []
-	}
-// need to send delete req to firebase
-	function deleteTask( taskId ) {
-		tasks.value = tasks.value.filter( task => task.id !== taskId )
 		fetch( "https://todolist-2e670-default-rtdb.firebaseio.com/todolist.json", {
 			method: 'DELETE',
 			// headers: {
@@ -82,7 +78,29 @@ function fetchTasks() {
 			}
 		})
 		.catch(error => console.error(error));
+	}
+	
+// need to send delete req to firebase
+function deleteTask( taskId ) {
+	tasks.value = tasks.value.filter( task => task.id !== taskId ) //h remove task d with its id from the arr
+	
+	fetch( `https://todolist-2e670-default-rtdb.firebaseio.com/todolist/${taskId}.json`, { 
+		method: 'DELETE',
+		// headers: {
+		// 	'content-Type': 'application/json'
+		// },
+		
+	} ).then(response => {
+		if (!response.ok) {
+			throw new Error('Failed to delete task from backend');
+		}
+	})
+	.catch(error => console.error(error));
 }
+
+
+
+
 	function isCompleted( taskId ) {
 		//find the task.id=>line through
 		const task = tasks.value.find( task => task.id === taskId );
