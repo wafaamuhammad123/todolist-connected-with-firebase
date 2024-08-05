@@ -2,8 +2,8 @@
 	<div>
 		<form @submit.prevent="handlelogin">
 
-			<input type="email" placeholder="Email" required>
-			<input type="password" placeholder="password" required>
+			<input v-model="email" type="email" placeholder="Email" required>
+			<input v-model="password" type="password" placeholder="password" required>
 
 			<button>sign in</button>
 			<router-link to="/login">login</router-link>

@@ -33,6 +33,7 @@ export const useUserStore = defineStore( 'UserStore', () => { //fn define and re
   fetch('https://todolist-2e670-default-rtdb.firebaseio.com/users.json')
   .then(response => response.json())
   .then(data => {
+    console.log("Fetched Users:", data); // Log fetched data
     if (data) {
       users.value = Object.keys(data).map(key => ({
         id: key,
@@ -40,8 +41,7 @@ export const useUserStore = defineStore( 'UserStore', () => { //fn define and re
       }));
     }
   })
-  .catch(error => console.error(error));
-
+  .catch(error => console.error("Fetch Users Error:", error)); // Log errors
     }
    
 
