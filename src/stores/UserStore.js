@@ -48,7 +48,7 @@ export const useUserStore = defineStore( 'UserStore', () => { //fn define and re
     
 	function loginUser ( email, password ) {
         const user = users.value.find(user => user.email === email && user.password === password);
-        // console.log(user);
+        console.log(user);
     if(user){
         console.log("success");
     }

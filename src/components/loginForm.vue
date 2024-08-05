@@ -6,7 +6,7 @@
 			<input v-model="password" type="password" placeholder="password" required>
 
 			<button>sign in</button>
-			<router-link to="/login">login</router-link>
+			<!-- <router-link to="/login">login</router-link> -->
             <div v-if="UserStore.currentUser">
 			<p>Welcome, {{ UserStore.currentUser.name }}!</p>
 		</div>

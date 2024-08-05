@@ -4,7 +4,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import registerForm from '@/components/registerForm.vue'
 // import loginForm from '@/components/loginForm.vue'
 
+
 const routes = [
+  { path: '/todolist', component: ToDoList },
   // { path: '/', component: Home },
   // { path: '/about', component: About },
   // { path: '/register', component: registerForm },
