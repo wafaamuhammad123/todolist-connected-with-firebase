@@ -7,11 +7,34 @@
     <router-view />
     <div>
       <!-- <h2>to-do-list</h2> -->
-      <ToDoList />
+      <!-- <ToDoList /> -->
+<registerForm/>
+<loginForm/>
+
     </div>
 
   </div>
 </template>
+
+<script>
+// import loginFormVue from './components/loginForm.vue'
+
+import registerForm from './components/registerForm.vue'
+import loginForm from './components/loginForm.vue'
+export default {
+  components: {
+    // ToDoList
+    registerForm,
+    loginForm
+  },
+  setup() {
+    
+  
+    
+  },
+}
+</script>
+
 
 <style>
 #app {
@@ -40,19 +63,3 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
-
-<script>
-// import { defineComponent } from '@vue/composition-api'
-import ToDoList from './components/ToDoList.vue'
-
-
-export default {
-  components: {
-    ToDoList
-  },
-  setup() {
-  
-    
-  },
-}
-</script>
