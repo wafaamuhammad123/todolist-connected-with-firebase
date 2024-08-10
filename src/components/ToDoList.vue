@@ -43,6 +43,7 @@ export default {
 		onMounted(() => {
 			taskStore.fetchTasks();
 		});
+    
 		function Toggle ( taskId ) {  
 
 			taskStore.isCompleted( taskId )

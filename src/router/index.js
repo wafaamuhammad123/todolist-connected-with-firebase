@@ -1,21 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router'
-// import Home from '@/views/Home.vue'
-// import About from '@/views/About.vue'
-// import registerForm from '@/components/registerForm.vue'
-// import loginForm from '@/components/loginForm.vue'
-
+import { createRouter, createWebHistory } from 'vue-router';
+import ToDoList from '@/components/ToDoList.vue';
+import registerForm from '@/components/registerForm.vue';
+import loginForm from '@/components/loginForm.vue';
 
 const routes = [
+  { path: '/', redirect: '/todolist' }, // Redirect root to ToDoList
   { path: '/todolist', component: ToDoList },
-  // { path: '/', component: Home },
-  // { path: '/about', component: About },
-  // { path: '/register', component: registerForm },
-  // { path: '/login', component: loginForm }
-]
+  { path: '/register', component: registerForm },
+  { path: '/login', component: loginForm }
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
+});
 
-export default router
+export default router;

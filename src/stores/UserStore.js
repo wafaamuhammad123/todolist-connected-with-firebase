@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-
+import { useRouter } from 'vue-router';
+import { useTaskStore } from '@/stores/TaskStore';
 export const useUserStore = defineStore('userStore', () => {
   const users = ref([]);
   const currentUser = ref(null);
+  const router = useRouter();
+  const taskStore = useTaskStore();
 
   function addUser(user) {
     const id = Date.now();
@@ -31,9 +34,14 @@ export const useUserStore = defineStore('userStore', () => {
         //map.entry=>processes each entry to extract the nested user object, resulting in an array of user objects.
         console.log('Converted users array:', usersArray);
 //holds an array of user objects, each containing email, name, and password properties.
+
+// now i wanna set the current user in the taskStore after a I login.
         const user = usersArray.find(user => user.email === email && user.password === password);
         if (user) {
+
           currentUser.value = user;
+          taskStore.setCurrentUser(user.id); // Set the current user in task store
+          router.push('/todolist');  // Navigate to the TodoList page
           console.log('User logged in:', user);
         } else {
           console.error('Invalid credentials');
