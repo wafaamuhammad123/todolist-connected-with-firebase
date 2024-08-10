@@ -20,27 +20,22 @@ export const useUserStore = defineStore('userStore', () => {
       .then(data => console.log('User added:', data))
       .catch(error => console.error('Add user error:', error));
   }
-
   function loginUser(email, password) {
     console.log('Attempting to log in with:', { email, password });
-
+  
     fetch('https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app/users.json')
       .then(response => response.json())
       .then(data => {
         console.log('Fetched users data:', data);
-
-        const usersArray = Object.values(data).map(entry => entry.user);
-        //obj.val=> extracts the values from the data object returned from Firebase, which are the individual user entries.
-        //map.entry=>processes each entry to extract the nested user object, resulting in an array of user objects.
+  
+        const usersArray = Object.entries(data).map(([id, user]) => ({ id, ...user }));
+  
         console.log('Converted users array:', usersArray);
-//holds an array of user objects, each containing email, name, and password properties.
-
-// now i wanna set the current user in the taskStore after a I login.
+  
         const user = usersArray.find(user => user.email === email && user.password === password);
         if (user) {
-
           currentUser.value = user;
-          taskStore.setCurrentUser(user.id); // Set the current user in task store
+          taskStore.setCurrentuser(user.id); // Set the current user in task store
           router.push('/todolist');  // Navigate to the TodoList page
           console.log('User logged in:', user);
         } else {
@@ -49,11 +44,13 @@ export const useUserStore = defineStore('userStore', () => {
       })
       .catch(error => console.error('Login error:', error));
   }
+  
 
   return {
     addUser,
     users,
-    currentUser,
     loginUser,
+    currentUser,
+
   };
 });

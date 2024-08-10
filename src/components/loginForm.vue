@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { useUserStore } from '@/stores/UserStore';
+import { useUserStore } from '@/stores/UserStore'; // Correct casing
+
 import { ref } from 'vue';
 
 export default {

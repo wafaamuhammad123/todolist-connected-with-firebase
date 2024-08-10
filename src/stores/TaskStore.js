@@ -4,28 +4,31 @@ import { ref } from 'vue';
 export const useTaskStore = defineStore('taskStore', () => {
   const tasks = ref([]);
   const currentuserId=ref(null);
-  function setCurrentuser(userId){
-    currentuserId.value=userId;
-    fetchTasks() //to Fetch tasks for the new user
+
+  function setCurrentuser(userId) {
+    currentuserId.value = userId;
+    fetchTasks(); // Fetch tasks for the new user
   }
-    function fetchTasks() {
-      if( !currentuserId){
-        console.log("error");
-      }
-      else{
-        fetch("https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app/todolist.json")
-        .then(response => response.json())
-        .then(data => {
-          if (data) {
-            tasks.value = Object.keys(data).map(key => ({
-              id: key,
-              title: data[key].title,
-            }));
-          }
-        })
-        .catch(error => console.error(error));
+  
+  function fetchTasks() {
+    if (!currentuserId.value) {
+      console.log("No current user ID set.");
+      return;
     }
-      }
+  
+    fetch(`https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app/todolist/${currentuserId.value}.json`)
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          tasks.value = Object.keys(data).map(key => ({
+            id: key,
+            title: data[key].title,
+          }));
+        }
+      })
+      .catch(error => console.error(error));
+  }
+  
      
   
     function addTask(task) {
@@ -110,6 +113,7 @@ export const useTaskStore = defineStore('taskStore', () => {
         clearTasks,
         deleteTask,
         editTask,
+        setCurrentuser,
         isCompleted
       };
     });
