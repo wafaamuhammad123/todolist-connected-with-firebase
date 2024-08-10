@@ -15,43 +15,49 @@ export const useTaskStore = defineStore('taskStore', () => {
       console.log("No current user ID set.");
       return;
     }
-  
-    fetch(`https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app/todolist/${currentuserId.value}.json`)
+    tasks.value = []; 
+    fetch(`https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json`)
       .then(response => response.json())
       .then(data => {
         if (data) {
-          tasks.value = Object.keys(data).map(key => ({
-            id: key,
-            title: data[key].title,
-          }));
+          // Filter tasks based on current user's ID
+          tasks.value = Object.entries(data)
+            .filter(([key, task]) => task.userId === currentuserId.value)
+            .map(([key, task]) => ({
+              id: key,
+              title: task.title,
+            }));
         }
       })
       .catch(error => console.error(error));
   }
   
+  
      
   
-    function addTask(task) {
-      if( !currentuserId){
-        console.log("error");
-      }
-      else{
-        const id = Date.now().toString();
-      tasks.value.push({
-        id,
-        title: task,
-      });
-      fetch("https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app/todolist.json", {
-        method: 'POST',
-        body: JSON.stringify({
-          id,
-          title: task,
-        })
-      }).then(response => console.log(response))
-        .catch(error => console.error(error));
+  function addTask(taskTitle) {
+    if (!currentuserId.value) {
+      console.log("No current user ID set.");
+      return;
     }
-       
-      }
+  
+    const id = Date.now().toString();
+    const newTask = {
+      id,
+      title: taskTitle,
+      userId: currentuserId.value
+    };
+  
+    tasks.value.push(newTask);
+  
+    fetch("https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json", {
+      method: 'POST',
+      body: JSON.stringify(newTask),
+    })
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  }
+  
     
       function clearTasks() {
         if( !currentuserId){

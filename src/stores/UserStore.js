@@ -29,6 +29,9 @@ export const useUserStore = defineStore('userStore', () => {
         console.log('Fetched users data:', data);
   
         const usersArray = Object.entries(data).map(([id, user]) => ({ id, ...user }));
+        // const usersArray = Object.values(data).map(entry=>({
+        //     ...entry.user,id:entry.id
+        // }))
   
         console.log('Converted users array:', usersArray);
   
