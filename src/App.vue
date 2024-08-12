@@ -1,19 +1,21 @@
 <template>
   <div>
     <nav>
-      <router-link to="/todolist">To-Do List</router-link>
-      <router-link to="/register">Register</router-link>
-      <router-link to="/login">Login</router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+      <router-link to="/login"> login</router-link>
+      <router-link to="/register"> register</router-link>
     </nav>
     <router-view />
+    <div>
+      <!-- <h2>to-do-list</h2> -->
+      <!-- <ToDoList /> -->
+      <!-- <register-form />
+      <login-form /> -->
+    </div>
+
   </div>
 </template>
-
-<script>
-export default {
-  components: {}
-};
-</script>
 
 <style>
 #app {
@@ -28,14 +30,37 @@ nav {
   padding: 30px;
 }
 
+.task {
+  padding: 17px;
+  width: 40%;
+  border: 1px solid lightgrey;
+
+}
+
 nav a {
   font-weight: bold;
   color: #2c3e50;
-  margin: 0 15px;
-  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+
+<script>
+// import { defineComponent } from '@vue/composition-api'
+// import ToDoList from './components/ToDoList.vue'
+// import registerForm from './components/registerForm.vue'
+// import loginForm from './components/loginForm.vue'
+
+export default {
+  components: {
+    // ToDoList
+    // registerForm, loginForm
+  },
+  setup () {
+
+
+  },
+}
+</script>

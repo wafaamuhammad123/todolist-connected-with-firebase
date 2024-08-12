@@ -1,26 +1,29 @@
-// import {
-// 	initializeApp
-// } from 'firebase/app';
-//  import {
-//  	getFirestore, collection, getDocs
-//  } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js'
-// const firebaseConfig = {
-// 	apiKey: "AIzaSyAAtwvnkFi53XxtS5JnfzfylSOysWXU32M",
-// 	authDomain: "todolist-23978.firebaseapp.com",
-// 	databaseURL: "https://todolist-23978-default-rtdb.asia-southeast1.firebasedatabase.app",
-// 	projectId: "todolist-23978",
-// 	storageBucket: "todolist-23978.appspot.com",
-// 	messagingSenderId: "833628139107",
-// 	appId: "1:833628139107:web:59ee363c16672f88ac1256"
-// };
-// // Initialize Firebase
-// const app = initializeApp( firebaseConfig );
-// var db = getFirestore(app)
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// {
-//   "rules": {
-//     ".read": "now < 1724706000000",  // 2024-8-27
-//     ".write": "now < 1724706000000",  // 2024-8-27
-//   }
-// }
+// Your web app's Firebase configuration
+//first step=> initialize firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCpXvdoYJQdRKFVu3F3V2uUNG-pnztLp8I",
+  authDomain: "todolist-2e670.firebaseapp.com",
+  databaseURL: "https://todolist-2e670-default-rtdb.firebaseio.com",
+  projectId: "todolist-2e670",
+  storageBucket: "todolist-2e670.appspot.com",
+  messagingSenderId: "383137723863",
+  appId: "1:383137723863:web:0a9f3476eeae65f64cc792",
+  measurementId: "G-ZH3LCG55WG"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth=getAuth(app)
+const database = getDatabase(app);
+
+export { auth, database ,analytics};
